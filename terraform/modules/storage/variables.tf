@@ -8,6 +8,16 @@ variable "location" {
   type        = string
 }
 
+variable "subnet_id" {
+  description = "Subnet ID used for the storage private endpoint."
+  type        = string
+}
+
+variable "vnet_id" {
+  description = "Virtual network ID used for the private DNS link."
+  type        = string
+}
+
 variable "storage_account_name" {
   description = "Globally unique storage account name."
   type        = string
@@ -27,7 +37,13 @@ variable "account_tier" {
 variable "account_replication_type" {
   description = "Storage account replication."
   type        = string
-  default     = "LRS"
+  default     = "ZRS"
+}
+
+variable "private_endpoint_name" {
+  description = "Name of the storage private endpoint."
+  type        = string
+  default     = "storage-pe"
 }
 
 variable "tags" {

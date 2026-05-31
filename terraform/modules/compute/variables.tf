@@ -13,11 +13,6 @@ variable "vm_name" {
   type        = string
 }
 
-variable "public_ip_name" {
-  description = "Name of the public IP resource."
-  type        = string
-}
-
 variable "network_interface_name" {
   description = "Name of the network interface."
   type        = string

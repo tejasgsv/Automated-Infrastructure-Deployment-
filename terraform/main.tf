@@ -18,7 +18,6 @@ locals {
   log_analytics_name        = "${var.name_prefix}-${var.environment}-law"
   application_insights_name = "${var.name_prefix}-${var.environment}-appi"
   vm_name                   = "${var.name_prefix}-${var.environment}-vm"
-  public_ip_name            = "${var.name_prefix}-${var.environment}-pip"
   network_interface_name    = "${var.name_prefix}-${var.environment}-nic"
   storage_account_name      = substr(lower(replace("${var.name_prefix}${var.environment}${local.name_suffix}sa", "-", "")), 0, 24)
 }
@@ -47,6 +46,8 @@ module "storage" {
 
   resource_group_name  = azurerm_resource_group.this.name
   location             = var.location
+  subnet_id            = module.network.subnet_id
+  vnet_id              = module.network.vnet_id
   storage_account_name = local.storage_account_name
   container_name       = local.storage_container_name
   tags                 = local.common_tags
@@ -69,7 +70,6 @@ module "compute" {
   resource_group_name    = azurerm_resource_group.this.name
   location               = var.location
   vm_name                = local.vm_name
-  public_ip_name         = local.public_ip_name
   network_interface_name = local.network_interface_name
   subnet_id              = module.network.subnet_id
   admin_username         = var.admin_username

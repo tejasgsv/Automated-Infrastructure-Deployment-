@@ -23,7 +23,7 @@ output "log_analytics_workspace_name" {
   value       = module.monitoring.log_analytics_workspace_name
 }
 
-output "vm_public_ip" {
-  description = "Public IP assigned to the Linux VM."
-  value       = module.compute.public_ip_address
+output "vm_name" {
+  description = "Name of the Linux VM."
+  value       = module.compute.vm_name
 }
