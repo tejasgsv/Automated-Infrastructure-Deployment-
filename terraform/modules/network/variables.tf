@@ -28,6 +28,12 @@ variable "subnet_address_prefixes" {
   type        = list(string)
 }
 
+variable "admin_source_address_prefixes" {
+  description = "Source address prefixes allowed to reach admin-facing services in the VM subnet."
+  type        = list(string)
+  default     = ["VirtualNetwork"]
+}
+
 variable "tags" {
   description = "Tags applied to network resources."
   type        = map(string)

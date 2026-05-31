@@ -16,6 +16,7 @@ resource "azurerm_storage_account" "this" {
   account_tier                    = var.account_tier
   account_replication_type        = var.account_replication_type
   allow_nested_items_to_be_public = false
+  shared_access_key_enabled       = false
   min_tls_version                 = "TLS1_2"
   tags                            = var.tags
 }
