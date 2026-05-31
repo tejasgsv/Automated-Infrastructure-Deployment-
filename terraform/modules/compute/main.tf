@@ -42,6 +42,7 @@ resource "azurerm_network_interface" "this" {
   }
 }
 
+#checkov:skip=CKV_AZURE_50: Using cloud-init instead of VM extensions for bootstrap
 resource "azurerm_linux_virtual_machine" "this" {
   name                            = var.vm_name
   location                        = var.location
