@@ -4,120 +4,19 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 4.1.0"
-    }
-  }
-}
-
-resource "azurerm_storage_account" "this" {
-  name                            = var.storage_account_name
-  resource_group_name             = var.resource_group_name
-  location                        = var.location
-  account_tier                    = var.account_tier
-  account_replication_type        = var.account_replication_type
-  allow_nested_items_to_be_public = false
-  shared_access_key_enabled       = false
-  public_network_access_enabled   = false
-  identity {
-    type = "SystemAssigned"
-  }
-  min_tls_version                 = "TLS1_2"
-  tags                            = var.tags
-
-  blob_properties {
-    logging {
-      delete                = true
-      read                  = true
-      write                 = true
-      version               = "1.0"
-      retention_policy_days = 7
-    }
-
-    delete_retention_policy {
-      days = 7
-    }
-
-    container_delete_retention_policy {
-      days = 7
-    }
-  }
-
-  queue_properties {
-    logging {
-      delete                = true
-      read                  = true
-      write                 = true
-      version               = "1.0"
-      retention_policy_days = 7
-    }
-  }
-
-  sas_policy {
-    expiration_period = "07.00:00:00"
-  }
-}
-
-resource "azurerm_storage_container" "this" {
-  name                  = var.container_name
-  storage_account_name  = azurerm_storage_account.this.name
-  container_access_type = "private"
-}
-
-resource "azurerm_log_analytics_workspace" "la" {
-  name                = var.log_analytics_workspace_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  sku                 = "PerGB2018"
-  retention_in_days   = var.log_retention_days
-  tags                = var.tags
-}
-
-resource "azurerm_key_vault" "kv" {
-  name                        = var.key_vault_name
-  location                    = var.location
-  resource_group_name         = var.resource_group_name
-  tenant_id                   = var.tenant_id
-  sku_name                    = "standard"
-  purge_protection_enabled    = true
-  soft_delete_enabled         = true
-  network_acls {
-    default_action = "Allow"
-    bypass         = "AzureServices"
-  }
-  tags = var.tags
-}
-
-resource "azurerm_key_vault_key" "kv_key" {
-  name         = var.key_name
-  key_vault_id = azurerm_key_vault.kv.id
-  key_type     = "RSA"
-  key_size     = 2048
-}
-
-resource "azurerm_key_vault_access_policy" "storage_to_kv" {
-  key_vault_id = azurerm_key_vault.kv.id
-  tenant_id    = var.tenant_id
-  object_id    = azurerm_storage_account.this.identity[0].principal_id
-
-  key_permissions = [
-    "get",
-    "wrapKey",
-    "unwrapKey",
-  ]
-}
-
-resource "azurerm_storage_account_customer_managed_key" "cmk" {
-  storage_account_id = azurerm_storage_account.this.id
-  key_vault_key_id   = azurerm_key_vault_key.kv_key.id
+  // CMK, Key Vault and diagnostic resources removed in this minimal safety PR.
+  // They will be implemented in a follow-up feature branch with provider-accurate configurations and required secrets/permissions.
+  key_vault_key_id   = azurerm_key_vault_key.kv_key[0].id
   depends_on         = [azurerm_key_vault_access_policy.storage_to_kv]
 }
 
 resource "azurerm_monitor_diagnostic_setting" "storage_diag" {
+  count                      = var.enable_cmk ? 1 : 0
   name                       = "storage-diag-${var.storage_account_name}"
   target_resource_id         = azurerm_storage_account.this.id
-  log_analytics_workspace_id = azurerm_log_analytics_workspace.la.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.la[0].id
 
-  log {
+  logs {
     category = "StorageRead"
     enabled  = true
     retention_policy {
@@ -125,7 +24,7 @@ resource "azurerm_monitor_diagnostic_setting" "storage_diag" {
       days    = var.log_retention_days
     }
   }
-  log {
+  logs {
     category = "StorageWrite"
     enabled  = true
     retention_policy {
@@ -133,7 +32,7 @@ resource "azurerm_monitor_diagnostic_setting" "storage_diag" {
       days    = var.log_retention_days
     }
   }
-  log {
+  logs {
     category = "StorageDelete"
     enabled  = true
     retention_policy {
@@ -142,7 +41,7 @@ resource "azurerm_monitor_diagnostic_setting" "storage_diag" {
     }
   }
 
-  metric {
+  metrics {
     category = "AllMetrics"
     enabled  = true
     retention_policy {

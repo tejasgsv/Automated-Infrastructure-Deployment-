@@ -59,11 +59,13 @@ variable "tags" {
 variable "tenant_id" {
   description = "Azure tenant id for Key Vault and access policies."
   type        = string
+  default     = ""
 }
 
 variable "key_vault_name" {
   description = "Name for Key Vault used for CMK."
   type        = string
+  default     = ""
 }
 
 variable "key_name" {
@@ -87,5 +89,7 @@ variable "log_retention_days" {
 variable "enable_cmk" {
   description = "Enable customer managed key (CMK) for the storage account."
   type        = bool
-  default     = true
+  default     = false
 }
+
+// Note: CMK and monitoring variables retained for future branch, but CMK is disabled by default.

@@ -15,12 +15,12 @@ output "container_name" {
 
 output "log_analytics_workspace_id" {
   description = "Log Analytics Workspace id created for storage diagnostics."
-  value       = azurerm_log_analytics_workspace.la.id
+  value       = ""
 }
 
 output "key_vault_id" {
   description = "Key Vault id used for CMK."
-  value       = azurerm_key_vault.kv.id
+  value       = ""
 }
 
 output "storage_identity_principal_id" {
