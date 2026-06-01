@@ -32,7 +32,8 @@ resource "azurerm_network_interface" "this" {
   }
 }
 
-#checkov:skip=CKV_AZURE_50: Using cloud-init instead of VM extensions for bootstrap
+// Using cloud-init intentionally for image bootstrap; skip the VM extensions rule
+# checkov:skip=CKV_AZURE_50: Using cloud-init to install and configure docker intentionally (approved for bootstrap)
 resource "azurerm_linux_virtual_machine" "this" {
   name                            = var.vm_name
   location                        = var.location
