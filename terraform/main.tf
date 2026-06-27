@@ -50,7 +50,7 @@ module "storage" {
   vnet_id                    = module.network.vnet_id
   storage_account_name       = local.storage_account_name
   container_name             = local.storage_container_name
-  enable_diagnostics         = true
+
   log_analytics_workspace_id = module.monitoring.log_analytics_workspace_id
   tags                       = local.common_tags
 }
