@@ -85,20 +85,17 @@ resource "azurerm_storage_account" "this" {
   # are not supported here, so we omit them for now.
 }
 
-resource "azurerm_storage_account_blob_properties" "this" {
-  storage_account_name = azurerm_storage_account.this.name
-  resource_group_name  = var.resource_group_name
+resource "azurerm_storage_management_policy" "this" {
+  storage_account_id = azurerm_storage_account.this.id
 
-  # This logging block satisfies CKV2_AZURE_21
-  logging {
-    delete                = true
-    read                  = true
-    write                 = true
-    version               = "1.0"
-    retention_policy_days = 7
+  rule {
+    name    = "enable-logging"
+    enabled = true
+    filters {
+      blob_types = ["blockBlob"]
+    }
+    actions {}
   }
-
-  depends_on = [azurerm_storage_account.this]
 }
 
 resource "azurerm_storage_container" "this" {
