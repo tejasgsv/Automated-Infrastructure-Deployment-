@@ -74,12 +74,6 @@ variable "key_name" {
   default     = "storage-key"
 }
 
-variable "log_analytics_workspace_name" {
-  description = "Log Analytics workspace name for diagnostics."
-  type        = string
-  default     = "la-storage"
-}
-
 variable "log_retention_days" {
   description = "Retention in days for logs and metrics in Log Analytics."
   type        = number
@@ -90,6 +84,18 @@ variable "enable_cmk" {
   description = "Enable customer managed key (CMK) for the storage account."
   type        = bool
   default     = false
+}
+
+variable "enable_diagnostics" {
+  description = "Enable diagnostic settings for the storage account."
+  type        = bool
+  default     = false
+}
+
+variable "log_analytics_workspace_id" {
+  description = "The ID of the Log Analytics Workspace to send diagnostics to."
+  type        = string
+  default     = null
 }
 
 // Note: CMK and monitoring variables retained for future branch, but CMK is disabled by default.

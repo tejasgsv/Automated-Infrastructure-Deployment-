@@ -51,6 +51,12 @@ variable "vm_size" {
   default     = "Standard_B2s"
 }
 
+variable "admin_public_key" {
+  description = "Public SSH key for the admin user on the virtual machine."
+  type        = string
+  sensitive   = true
+}
+
 variable "tags" {
   description = "Common tags applied to supported resources."
   type        = map(string)

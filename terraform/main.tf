@@ -44,13 +44,15 @@ module "network" {
 module "storage" {
   source = "./modules/storage"
 
-  resource_group_name  = azurerm_resource_group.this.name
-  location             = var.location
-  subnet_id            = module.network.subnet_id
-  vnet_id              = module.network.vnet_id
-  storage_account_name = local.storage_account_name
-  container_name       = local.storage_container_name
-  tags                 = local.common_tags
+  resource_group_name        = azurerm_resource_group.this.name
+  location                   = var.location
+  subnet_id                  = module.network.subnet_id
+  vnet_id                    = module.network.vnet_id
+  storage_account_name       = local.storage_account_name
+  container_name             = local.storage_container_name
+  enable_diagnostics         = true
+  log_analytics_workspace_id = module.monitoring.log_analytics_workspace_id
+  tags                       = local.common_tags
 }
 
 module "monitoring" {
@@ -73,6 +75,7 @@ module "compute" {
   network_interface_name = local.network_interface_name
   subnet_id              = module.network.subnet_id
   admin_username         = var.admin_username
+  admin_public_key      = var.admin_public_key
   vm_size                = var.vm_size
   tags                   = local.common_tags
 }

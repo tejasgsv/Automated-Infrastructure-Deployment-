@@ -19,7 +19,8 @@ env:
   TF_WORKING_DIR: terraform
 
 permissions:
-  contents: read
+  contents: read # Required for checkout
+  id-token: write # Required for OIDC authentication
 
 jobs:
   validate:
@@ -30,7 +31,6 @@ jobs:
       TF_BACKEND_STORAGE_ACCOUNT_NAME: ${{ secrets.TF_BACKEND_STORAGE_ACCOUNT_NAME }}
       TF_BACKEND_CONTAINER_NAME: ${{ secrets.TF_BACKEND_CONTAINER_NAME }}
       TF_BACKEND_KEY: ${{ secrets.TF_BACKEND_KEY }}
-      TF_BACKEND_ACCESS_KEY: ${{ secrets.TF_BACKEND_ACCESS_KEY }}
 
     steps:
       - name: Checkout
@@ -92,23 +92,23 @@ jobs:
   plan:
     name: terraform plan
     runs-on: ubuntu-latest
+
     needs:
       - validate
       - security
-    if: github.event_name == 'workflow_dispatch'
+    # This job runs on pull requests to show a plan of changes
+    if: github.event_name == 'pull_request'
     env:
       TF_BACKEND_RESOURCE_GROUP_NAME: ${{ secrets.TF_BACKEND_RESOURCE_GROUP_NAME }}
       TF_BACKEND_STORAGE_ACCOUNT_NAME: ${{ secrets.TF_BACKEND_STORAGE_ACCOUNT_NAME }}
       TF_BACKEND_CONTAINER_NAME: ${{ secrets.TF_BACKEND_CONTAINER_NAME }}
       TF_BACKEND_KEY: ${{ secrets.TF_BACKEND_KEY }}
-      TF_BACKEND_ACCESS_KEY: ${{ secrets.TF_BACKEND_ACCESS_KEY }}
-
-      ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-
       TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      TF_VAR_admin_public_key: ${{ secrets.ADMIN_PUBLIC_KEY }}
+
+
+    permissions:
+      pull-requests: write # Required to post plan results as a comment
 
     steps:
       - name: Checkout
@@ -120,8 +120,9 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-          creds: >-
-            {"clientId":"${{ secrets.AZURE_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_TENANT_ID }}"}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Terraform Init
         working-directory: terraform
@@ -130,9 +131,68 @@ jobs:
             -backend-config="resource_group_name=${TF_BACKEND_RESOURCE_GROUP_NAME}" \
             -backend-config="storage_account_name=${TF_BACKEND_STORAGE_ACCOUNT_NAME}" \
             -backend-config="container_name=${TF_BACKEND_CONTAINER_NAME}" \
-            -backend-config="key=${TF_BACKEND_KEY}" \
-            -backend-config="access_key=${TF_BACKEND_ACCESS_KEY}"
+            -backend-config="key=${TF_BACKEND_KEY}"
 
       - name: Terraform Plan
         working-directory: terraform
-        run: terraform plan -var-file=../environments/dev/terraform.tfvars
+        id: plan
+        run: terraform plan -input=false -var-file=../environments/dev/terraform.tfvars -out=tfplan -no-color
+
+      - name: Create Plan Output for PR
+        working-directory: terraform
+        run: terraform show -no-color tfplan > plan.txt
+
+      - name: Post Plan to PR
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: terraform-plan-dev
+          path: terraform/plan.txt
+
+  apply:
+
+    name: terraform apply
+    runs-on: ubuntu-latest
+    needs:
+      - validate
+      - security
+    # This job runs only when code is pushed to the main branch
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    env:
+      TF_BACKEND_RESOURCE_GROUP_NAME: ${{ secrets.TF_BACKEND_RESOURCE_GROUP_NAME }}
+      TF_BACKEND_STORAGE_ACCOUNT_NAME: ${{ secrets.TF_BACKEND_STORAGE_ACCOUNT_NAME }}
+      TF_BACKEND_CONTAINER_NAME: ${{ secrets.TF_BACKEND_CONTAINER_NAME }}
+      TF_BACKEND_KEY: ${{ secrets.TF_BACKEND_KEY }}
+      TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+      TF_VAR_admin_public_key: ${{ secrets.ADMIN_PUBLIC_KEY }}
+
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Terraform Init
+        working-directory: terraform
+        run: |
+          terraform init -reconfigure \
+            -backend-config="resource_group_name=${TF_BACKEND_RESOURCE_GROUP_NAME}" \
+            -backend-config="storage_account_name=${TF_BACKEND_STORAGE_ACCOUNT_NAME}" \
+            -backend-config="container_name=${TF_BACKEND_CONTAINER_NAME}" \
+            -backend-config="key=${TF_BACKEND_KEY}"
+
+      - name: Terraform Plan
+        working-directory: terraform
+        run: terraform plan -input=false -var-file=../environments/dev/terraform.tfvars -out=tfplan
+
+      - name: Terraform Apply
+        working-directory: terraform
+        run: terraform apply -auto-approve tfplan

@@ -28,6 +28,12 @@ variable "admin_username" {
   type        = string
 }
 
+variable "admin_public_key" {
+  description = "Public SSH key for the admin user."
+  type        = string
+  sensitive   = true
+}
+
 variable "vm_size" {
   description = "SKU used for the VM."
   type        = string

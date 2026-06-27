@@ -14,11 +14,6 @@ terraform {
   }
 }
 
-resource "tls_private_key" "this" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
 resource "azurerm_network_interface" "this" {
   name                = var.network_interface_name
   location            = var.location
@@ -32,8 +27,7 @@ resource "azurerm_network_interface" "this" {
   }
 }
 
-// Using cloud-init intentionally for image bootstrap; skip the VM extensions rule
-# checkov:skip=CKV_AZURE_50: Using cloud-init to install and configure docker intentionally (approved for bootstrap)
+# checkov:skip=CKV_AZURE_50: Using cloud-init for bootstrapping is an intentional design choice and an accepted alternative to using VM extensions for this use case.
 resource "azurerm_linux_virtual_machine" "this" {
   name                            = var.vm_name
   location                        = var.location
@@ -46,7 +40,7 @@ resource "azurerm_linux_virtual_machine" "this" {
 
   admin_ssh_key {
     username   = var.admin_username
-    public_key = tls_private_key.this.public_key_openssh
+    public_key = var.admin_public_key
   }
 
   os_disk {
