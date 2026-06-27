@@ -82,11 +82,7 @@ variable "enable_cmk" {
   default     = false
 }
 
-variable "enable_diagnostics" {
-  description = "Enable diagnostic settings for the storage account."
-  type        = bool
-  default     = false
-}
+
 
 variable "log_analytics_workspace_id" {
   description = "The ID of the Log Analytics Workspace to send diagnostics to."
