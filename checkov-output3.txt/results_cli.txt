@@ -1,0 +1,638 @@
+terraform scan results:
+
+Passed checks: 41, Failed checks: 2, Skipped checks: 0
+
+Check: CKV_AZURE_118: "Ensure that Network Interfaces disable IP forwarding"
+	PASSED for resource: module.compute.azurerm_network_interface.this
+	File: \terraform\modules\compute\main.tf:17-28
+	Calling File: \terraform\main.tf:69-81
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-network-interfaces-disable-ip-forwarding
+Check: CKV_AZURE_1: "Ensure Azure Instance does not use basic authentication(Use SSH Key Instead)"
+	PASSED for resource: module.compute.azurerm_linux_virtual_machine.this
+	File: \terraform\modules\compute\main.tf:31-77
+	Calling File: \terraform\main.tf:69-81
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-1
+Check: CKV_AZURE_178: "Ensure linux VM enables SSH with keys for secure communication"
+	PASSED for resource: module.compute.azurerm_linux_virtual_machine.this
+	File: \terraform\modules\compute\main.tf:31-77
+	Calling File: \terraform\main.tf:69-81
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-178
+Check: CKV_AZURE_179: "Ensure VM agent is installed"
+	PASSED for resource: module.compute.azurerm_linux_virtual_machine.this
+	File: \terraform\modules\compute\main.tf:31-77
+	Calling File: \terraform\main.tf:69-81
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-179
+Check: CKV_AZURE_149: "Ensure that Virtual machine does not enable password authentication"
+	PASSED for resource: module.compute.azurerm_linux_virtual_machine.this
+	File: \terraform\modules\compute\main.tf:31-77
+	Calling File: \terraform\main.tf:69-81
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-azure-virtual-machine-does-not-enable-password-authentication
+Check: CKV_AZURE_92: "Ensure that Virtual Machines use managed disks"
+	PASSED for resource: module.compute.azurerm_linux_virtual_machine.this
+	File: \terraform\modules\compute\main.tf:31-77
+	Calling File: \terraform\main.tf:69-81
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-that-virtual-machines-use-managed-disks
+Check: CKV_AZURE_183: "Ensure that VNET uses local DNS addresses"
+	PASSED for resource: module.network.azurerm_virtual_network.this
+	File: \terraform\modules\network\main.tf:12-18
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-183
+Check: CKV_AZURE_182: "Ensure that VNET has at least 2 connected DNS Endpoints"
+	PASSED for resource: module.network.azurerm_virtual_network.this
+	File: \terraform\modules\network\main.tf:12-18
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-182
+Check: CKV_AZURE_160: "Ensure that HTTP (port 80) access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_group.this
+	File: \terraform\modules\network\main.tf:20-25
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-azure-http-port-80-access-from-the-internet-is-restricted
+Check: CKV_AZURE_9: "Ensure that RDP access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_group.this
+	File: \terraform\modules\network\main.tf:20-25
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-2
+Check: CKV_AZURE_10: "Ensure that SSH access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_group.this
+	File: \terraform\modules\network\main.tf:20-25
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-3
+Check: CKV_AZURE_77: "Ensure that UDP Services are restricted from the Internet "
+	PASSED for resource: module.network.azurerm_network_security_group.this
+	File: \terraform\modules\network\main.tf:20-25
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-udp-services-are-restricted-from-the-internet
+Check: CKV_AZURE_160: "Ensure that HTTP (port 80) access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_rule.ssh
+	File: \terraform\modules\network\main.tf:27-39
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-azure-http-port-80-access-from-the-internet-is-restricted
+Check: CKV_AZURE_9: "Ensure that RDP access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_rule.ssh
+	File: \terraform\modules\network\main.tf:27-39
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-2
+Check: CKV_AZURE_10: "Ensure that SSH access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_rule.ssh
+	File: \terraform\modules\network\main.tf:27-39
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-3
+Check: CKV_AZURE_77: "Ensure that UDP Services are restricted from the Internet "
+	PASSED for resource: module.network.azurerm_network_security_rule.ssh
+	File: \terraform\modules\network\main.tf:27-39
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-udp-services-are-restricted-from-the-internet
+Check: CKV_AZURE_160: "Ensure that HTTP (port 80) access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_rule.http
+	File: \terraform\modules\network\main.tf:41-53
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-azure-http-port-80-access-from-the-internet-is-restricted
+Check: CKV_AZURE_9: "Ensure that RDP access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_rule.http
+	File: \terraform\modules\network\main.tf:41-53
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-2
+Check: CKV_AZURE_10: "Ensure that SSH access is restricted from the internet"
+	PASSED for resource: module.network.azurerm_network_security_rule.http
+	File: \terraform\modules\network\main.tf:41-53
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azr-networking-3
+Check: CKV_AZURE_77: "Ensure that UDP Services are restricted from the Internet "
+	PASSED for resource: module.network.azurerm_network_security_rule.http
+	File: \terraform\modules\network\main.tf:41-53
+	Calling File: \terraform\main.tf:32-42
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-udp-services-are-restricted-from-the-internet
+Check: CKV_AZURE_36: "Ensure 'Trusted Microsoft Services' is enabled for Storage Account access"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/enable-trusted-microsoft-services-for-storage-account-access
+Check: CKV_AZURE_59: "Ensure that Storage accounts disallow public access"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-storage-accounts-disallow-public-access
+Check: CKV_AZURE_33: "Ensure Storage logging is enabled for Queue service for read, write and delete requests"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-logging-policies/enable-requests-on-storage-logging-for-queue-service
+Check: CKV_AZURE_44: "Ensure Storage Account is using the latest version of TLS encryption"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-storage-policies/bc-azr-storage-2
+Check: CKV_AZURE_43: "Ensure Storage Accounts adhere to the naming rules"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-storage-policies/ensure-storage-accounts-adhere-to-the-naming-rules
+Check: CKV_AZURE_3: "Ensure that 'enable_https_traffic_only' is enabled"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-3
+Check: CKV_AZURE_206: "Ensure that Storage Accounts use replication"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/azr-general-206
+Check: CKV_AZURE_190: "Ensure that Storage blobs restrict public access"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/azr-networking-190
+Check: CKV_AZURE_244: "Avoid the use of local users for Azure Storage unless necessary"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-244
+Check: CKV_AZURE_34: "Ensure that 'Public access level' is set to Private for blob containers"
+	PASSED for resource: module.storage.azurerm_storage_container.this
+	File: \terraform\modules\storage\main.tf:88-92
+	Calling File: \terraform\main.tf:44-56
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/set-public-access-level-to-private-for-blob-containers
+Check: CKV2_AZURE_32: "Ensure private endpoint is configured to key vault"
+	PASSED for resource: module.storage.azurerm_key_vault.kv
+	File: \terraform\modules\storage\main.tf:129-139
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-32
+Check: CKV_AZURE_119: "Ensure that Network Interfaces don't use public IPs"
+	PASSED for resource: module.compute.azurerm_network_interface.this
+	File: \terraform\modules\compute\main.tf:17-28
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/ensure-that-network-interfaces-dont-use-public-ips
+Check: CKV2_AZURE_40: "Ensure storage account is not configured with Shared Key authorization"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-iam-policies/bc-azure-2-40
+Check: CKV2_AZURE_47: "Ensure storage account is configured without blob anonymous access"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-iam-policies/bc-azure-2-47
+Check: CKV2_AZURE_33: "Ensure storage account is configured with private endpoint"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-33
+Check: CKV2_AZURE_41: "Ensure storage account is configured with SAS expiration policy"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-iam-policies/bc-azure-2-41
+Check: CKV2_AZURE_38: "Ensure soft-delete is enabled on Azure storage account"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-38
+Check: CKV2_AZURE_8: "Ensure the storage container storing the activity logs is not publicly accessible"
+	PASSED for resource: module.storage.azurerm_storage_container.this
+	File: \terraform\modules\storage\main.tf:88-92
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-logging-policies/ensure-the-storage-container-storing-the-activity-logs-is-not-publicly-accessible
+Check: CKV2_AZURE_1: "Ensure storage for critical data are encrypted with Customer Managed Key"
+	PASSED for resource: module.storage.azurerm_storage_account.this
+	File: \terraform\modules\storage\main.tf:34-85
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/ensure-storage-for-critical-data-are-encrypted-with-customer-managed-key
+Check: CKV2_AZURE_31: "Ensure VNET subnet is configured with a Network Security Group (NSG)"
+	PASSED for resource: module.network.azurerm_subnet.this
+	File: \terraform\modules\network\main.tf:55-60
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azure-2-31
+Check: CKV2_AZURE_39: "Ensure Azure VM is not configured with public IP and serial console access"
+	PASSED for resource: module.compute.azurerm_network_interface.this
+	File: \terraform\modules\compute\main.tf:17-28
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-networking-policies/bc-azure-2-39
+Check: CKV_AZURE_50: "Ensure Virtual Machine Extensions are not Installed"
+	FAILED for resource: module.compute.azurerm_linux_virtual_machine.this
+	File: \terraform\modules\compute\main.tf:31-77
+	Calling File: \terraform\main.tf:69-81
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-general-policies/bc-azr-general-14
+
+		31 | resource "azurerm_linux_virtual_machine" "this" {
+		32 |   name                            = var.vm_name
+		33 |   location                        = var.location
+		34 |   resource_group_name             = var.resource_group_name
+		35 |   size                            = var.vm_size
+		36 |   admin_username                  = var.admin_username
+		37 |   disable_password_authentication = true
+		38 |   network_interface_ids           = [azurerm_network_interface.this.id]
+		39 |   tags                            = var.tags
+		40 | 
+		41 |   admin_ssh_key {
+		42 |     username   = var.admin_username
+		43 |     public_key = var.admin_public_key
+		44 |   }
+		45 | 
+		46 |   os_disk {
+		47 |     caching              = "ReadWrite"
+		48 |     storage_account_type = "Standard_LRS"
+		49 |   }
+		50 | 
+		51 |   source_image_reference {
+		52 |     publisher = "Canonical"
+		53 |     offer     = "0001-com-ubuntu-server-jammy"
+		54 |     sku       = "22_04-lts"
+		55 |     version   = "latest"
+		56 |   }
+		57 | 
+		58 |   custom_data = base64encode(<<-EOT
+		59 |     #cloud-config
+		60 |     package_update: true
+		61 |     packages:
+		62 |       - ca-certificates
+		63 |       - curl
+		64 |       - gnupg
+		65 |       - lsb-release
+		66 |     runcmd:
+		67 |       - install -m 0755 -d /etc/apt/keyrings
+		68 |       - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+		69 |       - chmod a+r /etc/apt/keyrings/docker.gpg
+		70 |       - echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu jammy stable" > /etc/apt/sources.list.d/docker.list
+		71 |       - apt-get update
+		72 |       - apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+		73 |       - systemctl enable docker
+		74 |       - systemctl start docker
+		75 |   EOT
+		76 |   )
+		77 | }
+Check: CKV2_AZURE_21: "Ensure Storage logging is enabled for Blob service for read requests"
+	FAILED for resource: module.storage.azurerm_storage_container.this
+	File: \terraform\modules\storage\main.tf:88-92
+	Guide: https://docs.prismacloud.io/en/enterprise-edition/policy-reference/azure-policies/azure-logging-policies/ensure-storage-logging-is-enabled-for-blob-service-for-read-requests
+
+		88 | resource "azurerm_storage_container" "this" {
+		89 |   name                  = var.container_name
+		90 |   storage_account_name  = azurerm_storage_account.this.name
+		91 |   container_access_type = "private"
+		92 | }
+
+github_actions scan results:
+
+Passed checks: 124, Failed checks: 0, Skipped checks: 0
+
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate)
+	File: /.github\workflows\terraform.yml:27-66
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(security)
+	File: /.github\workflows\terraform.yml:66-95
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(plan)
+	File: /.github\workflows\terraform.yml:95-154
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(apply)
+	File: /.github\workflows\terraform.yml:155-202
+Check: CKV_GHA_5: "Found artifact build without evidence of cosign sign execution in pipeline"
+	PASSED for resource: jobs
+	File: /.github\workflows\terraform.yml:26-202
+Check: CKV_GHA_6: "Found artifact build without evidence of cosign sbom attestation in pipeline"
+	PASSED for resource: jobs
+	File: /.github\workflows\terraform.yml:26-202
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate)
+	File: /.github\workflows\terraform.yml:27-66
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(security)
+	File: /.github\workflows\terraform.yml:66-95
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(plan)
+	File: /.github\workflows\terraform.yml:95-154
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(apply)
+	File: /.github\workflows\terraform.yml:155-202
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate)
+	File: /.github\workflows\terraform.yml:27-66
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(security)
+	File: /.github\workflows\terraform.yml:66-95
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(plan)
+	File: /.github\workflows\terraform.yml:95-154
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(apply)
+	File: /.github\workflows\terraform.yml:155-202
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate)
+	File: /.github\workflows\terraform.yml:27-66
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(security)
+	File: /.github\workflows\terraform.yml:66-95
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(plan)
+	File: /.github\workflows\terraform.yml:95-154
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(apply)
+	File: /.github\workflows\terraform.yml:155-202
+Check: CKV_GHA_7: "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. "
+	PASSED for resource: on(terraform-iac)
+	File: /.github\workflows\terraform.yml:4-17
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:36-40
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:39-43
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate).steps[3](Terraform Format Check)
+	File: /.github\workflows\terraform.yml:42-47
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:46-51
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate).steps[5](Terraform Validate)
+	File: /.github\workflows\terraform.yml:50-55
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate).steps[6](Setup TFLint)
+	File: /.github\workflows\terraform.yml:54-58
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate).steps[7](TFLint Init)
+	File: /.github\workflows\terraform.yml:57-62
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(validate).steps[8](TFLint Scan)
+	File: /.github\workflows\terraform.yml:61-66
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(security).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:70-74
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(security).steps[2](Setup Python)
+	File: /.github\workflows\terraform.yml:73-79
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(security).steps[3](Install Checkov)
+	File: /.github\workflows\terraform.yml:78-84
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(security).steps[4](Checkov Scan)
+	File: /.github\workflows\terraform.yml:83-90
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(security).steps[5](Run tfsec)
+	File: /.github\workflows\terraform.yml:89-95
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(plan).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:116-120
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(plan).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:119-123
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(plan).steps[3](Azure Login)
+	File: /.github\workflows\terraform.yml:122-130
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(plan).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:129-139
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(plan).steps[5](Terraform Plan)
+	File: /.github\workflows\terraform.yml:138-144
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(plan).steps[6](Create Plan Output for PR)
+	File: /.github\workflows\terraform.yml:143-148
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(plan).steps[7](Post Plan to PR)
+	File: /.github\workflows\terraform.yml:147-154
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(apply).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:172-176
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(apply).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:175-179
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(apply).steps[3](Azure Login)
+	File: /.github\workflows\terraform.yml:178-186
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(apply).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:185-195
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(apply).steps[5](Terraform Plan)
+	File: /.github\workflows\terraform.yml:194-199
+Check: CKV_GHA_1: "Ensure ACTIONS_ALLOW_UNSECURE_COMMANDS isn't true on environment variables"
+	PASSED for resource: jobs(apply).steps[6](Terraform Apply)
+	File: /.github\workflows\terraform.yml:198-202
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:36-40
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:39-43
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate).steps[3](Terraform Format Check)
+	File: /.github\workflows\terraform.yml:42-47
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:46-51
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate).steps[5](Terraform Validate)
+	File: /.github\workflows\terraform.yml:50-55
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate).steps[6](Setup TFLint)
+	File: /.github\workflows\terraform.yml:54-58
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate).steps[7](TFLint Init)
+	File: /.github\workflows\terraform.yml:57-62
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(validate).steps[8](TFLint Scan)
+	File: /.github\workflows\terraform.yml:61-66
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(security).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:70-74
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(security).steps[2](Setup Python)
+	File: /.github\workflows\terraform.yml:73-79
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(security).steps[3](Install Checkov)
+	File: /.github\workflows\terraform.yml:78-84
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(security).steps[4](Checkov Scan)
+	File: /.github\workflows\terraform.yml:83-90
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(security).steps[5](Run tfsec)
+	File: /.github\workflows\terraform.yml:89-95
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(plan).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:116-120
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(plan).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:119-123
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(plan).steps[3](Azure Login)
+	File: /.github\workflows\terraform.yml:122-130
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(plan).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:129-139
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(plan).steps[5](Terraform Plan)
+	File: /.github\workflows\terraform.yml:138-144
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(plan).steps[6](Create Plan Output for PR)
+	File: /.github\workflows\terraform.yml:143-148
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(plan).steps[7](Post Plan to PR)
+	File: /.github\workflows\terraform.yml:147-154
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(apply).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:172-176
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(apply).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:175-179
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(apply).steps[3](Azure Login)
+	File: /.github\workflows\terraform.yml:178-186
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(apply).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:185-195
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(apply).steps[5](Terraform Plan)
+	File: /.github\workflows\terraform.yml:194-199
+Check: CKV_GHA_4: "Suspicious use of netcat with IP address"
+	PASSED for resource: jobs(apply).steps[6](Terraform Apply)
+	File: /.github\workflows\terraform.yml:198-202
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:36-40
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:39-43
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate).steps[3](Terraform Format Check)
+	File: /.github\workflows\terraform.yml:42-47
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:46-51
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate).steps[5](Terraform Validate)
+	File: /.github\workflows\terraform.yml:50-55
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate).steps[6](Setup TFLint)
+	File: /.github\workflows\terraform.yml:54-58
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate).steps[7](TFLint Init)
+	File: /.github\workflows\terraform.yml:57-62
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(validate).steps[8](TFLint Scan)
+	File: /.github\workflows\terraform.yml:61-66
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(security).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:70-74
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(security).steps[2](Setup Python)
+	File: /.github\workflows\terraform.yml:73-79
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(security).steps[3](Install Checkov)
+	File: /.github\workflows\terraform.yml:78-84
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(security).steps[4](Checkov Scan)
+	File: /.github\workflows\terraform.yml:83-90
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(security).steps[5](Run tfsec)
+	File: /.github\workflows\terraform.yml:89-95
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(plan).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:116-120
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(plan).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:119-123
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(plan).steps[3](Azure Login)
+	File: /.github\workflows\terraform.yml:122-130
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(plan).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:129-139
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(plan).steps[5](Terraform Plan)
+	File: /.github\workflows\terraform.yml:138-144
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(plan).steps[6](Create Plan Output for PR)
+	File: /.github\workflows\terraform.yml:143-148
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(plan).steps[7](Post Plan to PR)
+	File: /.github\workflows\terraform.yml:147-154
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(apply).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:172-176
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(apply).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:175-179
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(apply).steps[3](Azure Login)
+	File: /.github\workflows\terraform.yml:178-186
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(apply).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:185-195
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(apply).steps[5](Terraform Plan)
+	File: /.github\workflows\terraform.yml:194-199
+Check: CKV_GHA_2: "Ensure run commands are not vulnerable to shell injection"
+	PASSED for resource: jobs(apply).steps[6](Terraform Apply)
+	File: /.github\workflows\terraform.yml:198-202
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:36-40
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:39-43
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate).steps[3](Terraform Format Check)
+	File: /.github\workflows\terraform.yml:42-47
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:46-51
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate).steps[5](Terraform Validate)
+	File: /.github\workflows\terraform.yml:50-55
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate).steps[6](Setup TFLint)
+	File: /.github\workflows\terraform.yml:54-58
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate).steps[7](TFLint Init)
+	File: /.github\workflows\terraform.yml:57-62
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(validate).steps[8](TFLint Scan)
+	File: /.github\workflows\terraform.yml:61-66
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(security).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:70-74
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(security).steps[2](Setup Python)
+	File: /.github\workflows\terraform.yml:73-79
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(security).steps[3](Install Checkov)
+	File: /.github\workflows\terraform.yml:78-84
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(security).steps[4](Checkov Scan)
+	File: /.github\workflows\terraform.yml:83-90
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(security).steps[5](Run tfsec)
+	File: /.github\workflows\terraform.yml:89-95
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(plan).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:116-120
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(plan).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:119-123
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(plan).steps[3](Azure Login)
+	File: /.github\workflows\terraform.yml:122-130
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(plan).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:129-139
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(plan).steps[5](Terraform Plan)
+	File: /.github\workflows\terraform.yml:138-144
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(plan).steps[6](Create Plan Output for PR)
+	File: /.github\workflows\terraform.yml:143-148
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(plan).steps[7](Post Plan to PR)
+	File: /.github\workflows\terraform.yml:147-154
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(apply).steps[1](Checkout)
+	File: /.github\workflows\terraform.yml:172-176
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(apply).steps[2](Setup Terraform)
+	File: /.github\workflows\terraform.yml:175-179
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(apply).steps[3](Azure Login)
+	File: /.github\workflows\terraform.yml:178-186
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(apply).steps[4](Terraform Init)
+	File: /.github\workflows\terraform.yml:185-195
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(apply).steps[5](Terraform Plan)
+	File: /.github\workflows\terraform.yml:194-199
+Check: CKV_GHA_3: "Suspicious use of curl with secrets"
+	PASSED for resource: jobs(apply).steps[6](Terraform Apply)
+	File: /.github\workflows\terraform.yml:198-202
+Check: CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
+	PASSED for resource: on(terraform-iac)
+	File: /.github\workflows\terraform.yml:22-26
