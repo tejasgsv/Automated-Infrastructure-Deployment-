@@ -44,12 +44,12 @@ module "network" {
 module "storage" {
   source = "./modules/storage"
 
-  resource_group_name        = azurerm_resource_group.this.name
-  location                   = var.location
-  subnet_id                  = module.network.subnet_id
-  vnet_id                    = module.network.vnet_id
-  storage_account_name       = local.storage_account_name
-  container_name             = local.storage_container_name
+  resource_group_name  = azurerm_resource_group.this.name
+  location             = var.location
+  subnet_id            = module.network.subnet_id
+  vnet_id              = module.network.vnet_id
+  storage_account_name = local.storage_account_name
+  container_name       = local.storage_container_name
 
   log_analytics_workspace_id = module.monitoring.log_analytics_workspace_id
   tags                       = local.common_tags
