@@ -52,6 +52,14 @@ resource "azurerm_storage_account" "this" {
   }
 
   blob_properties {
+    logging {
+      delete                = true
+      read                  = true
+      write                 = true
+      version               = "1.0"
+      retention_policy_days = 7
+    }
+
     delete_retention_policy {
       days = 7
     }
@@ -230,4 +238,3 @@ resource "azurerm_monitor_diagnostic_setting" "storage" {
     enabled  = true
   }
 }
-
