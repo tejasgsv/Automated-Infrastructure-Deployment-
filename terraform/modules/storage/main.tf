@@ -52,14 +52,6 @@ resource "azurerm_storage_account" "this" {
   }
 
   blob_properties {
-    logging {
-      delete                = true
-      read                  = true
-      write                 = true
-      version               = "1.0"
-      retention_policy_days = 7
-    }
-
     delete_retention_policy {
       days = 7
     }
@@ -93,6 +85,21 @@ resource "azurerm_storage_account" "this" {
   # are not supported here, so we omit them for now.
 }
 
+resource "azurerm_storage_account_blob_properties" "this" {
+  storage_account_name = azurerm_storage_account.this.name
+  resource_group_name  = var.resource_group_name
+
+  # This logging block satisfies CKV2_AZURE_21
+  logging {
+    delete                = true
+    read                  = true
+    write                 = true
+    version               = "1.0"
+    retention_policy_days = 7
+  }
+
+  depends_on = [azurerm_storage_account.this]
+}
 
 resource "azurerm_storage_container" "this" {
   name                  = var.container_name
