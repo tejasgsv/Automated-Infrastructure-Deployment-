@@ -119,13 +119,13 @@ resource "azurerm_key_vault_access_policy" "storage_to_kv" {
 }
 
 resource "azurerm_monitor_diagnostic_setting" "storage_diag" {
-  count                        = var.enable_diagnostics ? 1 : 0
-  name                         = "storage-diag-${var.storage_account_name}"
-  target_resource_id           = azurerm_storage_account.this.id
-  log_analytics_workspace_id   = var.log_analytics_workspace_id
+  count                      = var.enable_diagnostics ? 1 : 0
+  name                       = "storage-diag-${var.storage_account_name}"
+  target_resource_id         = azurerm_storage_account.this.id
+  log_analytics_workspace_id = var.log_analytics_workspace_id
 
   # Minimal required arguments for this provider schema.
-  metric { 
+  metric {
     category = "AllMetrics"
     enabled  = true
   }

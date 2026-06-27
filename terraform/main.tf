@@ -75,7 +75,7 @@ module "compute" {
   network_interface_name = local.network_interface_name
   subnet_id              = module.network.subnet_id
   admin_username         = var.admin_username
-  admin_public_key      = var.admin_public_key
+  admin_public_key       = var.admin_public_key
   vm_size                = var.vm_size
   tags                   = local.common_tags
 }
