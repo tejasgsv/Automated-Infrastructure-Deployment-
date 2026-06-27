@@ -26,7 +26,8 @@ resource "azurerm_linux_virtual_machine" "this" {
     version   = "latest"
   }
 
-  provision_vm_agent = false
+  # Required to satisfy CKV_AZURE_179 (VM agent enabled)
+  provision_vm_agent = true
 
   # Explicitly disallow extensions to satisfy CKV_AZURE_50
   allow_extension_operations = false
