@@ -74,11 +74,7 @@ variable "key_name" {
   default     = "storage-key"
 }
 
-variable "log_retention_days" {
-  description = "Retention in days for logs and metrics in Log Analytics."
-  type        = number
-  default     = 90
-}
+
 
 variable "enable_cmk" {
   description = "Enable customer managed key (CMK) for the storage account."
